@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="customer1"
+          class="spammer.model.Customer"
+          scope="prototype">
+        <property name="id" value="1"/>
+        <property name="name" value="Bob"/>
+        <property name="phone" value="+19138445656"/>
+        <property name="email" value="null"/>
+        <property name="dateOfLastNotification" value="#{T(java.time.LocalDate).now().minusDays(40)}"/>
+    </bean>
+    <bean id="customer2"
+          class="spammer.model.Customer"
+          scope="prototype">
+        <property name="id" value="2"/>
+        <property name="name" value="Sarah"/>
+        <property name="phone" value="+19158455617"/>
+        <property name="email" value="sarah -sweet@candy.com"/>
+        <property name="dateOfLastNotification" value="#{T(java.time.LocalDate).of(2024,1,16)}"/>
+    </bean>
+    <bean id="emailNotificationService"
+          class="spammer.service.impl.EmailNotificationService">
+        <property name="customerList">
+            <list>
+                <ref bean="customer1"/>
+                <ref bean="customer2"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="smsNotificationService"
+          class="spammer.service.impl.SmsNotificationService">
+        <property name="customerList">
+            <list>
+                <ref bean="customer1"/>
+                <ref bean="customer2"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

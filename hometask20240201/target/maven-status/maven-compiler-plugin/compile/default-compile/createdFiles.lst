@@ -1,0 +1,3 @@
+org\example\config\SpringConfig.class
+org\example\controllers\MessageController.class
+org\example\service\MessageService.class

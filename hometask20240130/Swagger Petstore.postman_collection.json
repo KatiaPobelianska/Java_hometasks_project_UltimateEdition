@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "9b961eb2-7ac2-4272-9302-cdac6765254a",
+		"name": "Swagger Petstore",
+		"description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.\n\nContact Support:\n Email: apiteam@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32654682"
+	},
+	"item": [
+		{
+			"name": "{petId}",
+			"item": [
+				{
+					"name": "Find pet by ID doggie",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{apiKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/:petId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								":petId"
+							],
+							"variable": [
+								{
+									"key": "petId",
+									"value": "9223372036854764230",
+									"description": "(Required) ID of pet to return"
+								}
+							]
+						},
+						"description": "Returns a single pet"
+					},
+					"response": [
+						{
+							"name": "successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "api_key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"<string>\",\n  \"photoUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"id\": \"<long>\",\n  \"category\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"status\": \"available\"\n}"
+						},
+						{
+							"name": "Invalid ID supplied",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "api_key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Pet not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "api_key",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "GET by Id fish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Nemo\",\n  \"photoUrls\": [\n    \"https://www.busylittlekiddies.com/wp-content/uploads/Fish-11.png\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"fish\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/:petId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								":petId"
+							],
+							"variable": [
+								{
+									"key": "petId",
+									"value": "9223372036854764112"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"photoUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"id\": \"<long>\",\n  \"category\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pet",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Updates a pet in the store with form data",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9223372036854764112,\r\n    \"name\": \"Nemo fishes\",\r\n    \"photoUrls\": [\r\n        \"https://www.busylittlekiddies.com/wp-content/uploads/Fish-11.png\"\r\n    ],\r\n    \"tags\": [\r\n        {\r\n            \"id\": 0,\r\n            \"name\": \"fishes\"\r\n        }\r\n    ],\r\n    \"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "Updated name of the pet"
+										},
+										{
+											"key": "status",
+											"value": "<string>",
+											"description": "Updated status of the pet"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "POST add new pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"data:image/jpeg;base64,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\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a pet",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "read:pets write:pets",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://petstore.swagger.io/oauth/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pet/9223372036854764515",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"9223372036854764515"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid ID supplied",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_key",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Pet not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_key",
+										"value": "<string>"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "GET afrer DELETE ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/9223372036854764515",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"9223372036854764515"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2"
+		},
+		{
+			"key": "fish",
+			"value": "9223372036854764112",
+			"type": "string"
+		}
+	]
+}

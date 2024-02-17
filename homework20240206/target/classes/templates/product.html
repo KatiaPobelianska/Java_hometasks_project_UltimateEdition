@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<form action="/products">
+    <input type="submit" value="All Products">
+</form>
+<h2 th:text="${'Product ' + product.getName()}"></h2>
+<p th:text="${'Price: ' + product.getPrice()}"></p>
+<h3>Reviews:</h3>
+<div th:each="review : ${reviews}">
+    <h4 th:text="${'Name: ' + review.getName()}"></h4>
+    <p th:text="${'Review: ' + review.getDescription()}"></p>
+    <p th:text="${'Mark: ' + review.getMark()}"></p>
+</div>
+<h3>Average Rating:</h3>
+<p th:text="${'Average Rating: ' + averageRating}"></p>
+</body>
+</html>
+

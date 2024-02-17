@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Products</title>
+</head>
+<body>
+<div th:each="product : ${products}">
+    <form th:action="@{/products/{id}(id=${product.getId()})}">
+        <input type="submit" th:value="${product.getName()}"/>
+    </form>
+</div>
+</body>
+</html>

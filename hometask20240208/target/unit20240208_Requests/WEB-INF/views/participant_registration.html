@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>User registration form</title>
+    </head>
+    <body>
+        <main>
+            <h1>Create user</h1>
+            <form th:object="${participant}"
+                  th:action="@{/view/registration}"
+                  method="post">
+                <div>
+                    <label for="firstName">First name</label>
+                    <input id="firstName" type="text"
+                           th:field="*{firstName}">
+                    <p style="color: red" th:if="${#fields.hasErrors('firstName')}"
+                       th:text="${#strings.listJoin(#fields.errors('firstName'), ', ')}"></p>
+                </div>
+                <div>
+                    <label for="lastName">Last name</label>
+                    <input id="lastName" type="text"
+                           th:field="*{lastName}"/>
+                    <p style="color: red" th:if="${#fields.hasErrors('lastName')}"
+                       th:text="${#strings.listJoin(#fields.errors('lastName'), ', ')}"></p>
+                </div>
+                <div>
+                    <label for="age">Age</label>
+                    <input id="age" type="number"
+                           th:field="*{age}"/>
+                    <p style="color: red" th:if="${#fields.hasErrors('age')}"
+                       th:text="${#strings.listJoin(#fields.errors('age'), ', ')}"></p>
+                </div>
+                <div>
+                    <label for="isAgree">Personal data agreement</label>
+                    <input id="isAgree" type="checkbox" th:checked="*{isAgree}"/>
+                    <p style="color: red" th:if="${#fields.hasErrors('isAgree')}"
+                       th:text="${#strings.listJoin(#fields.errors('isAgree'), ', ')}"></p>
+                </div>
+                <button type="submit">Create user</button>
+            </form>
+        </main>
+
+        <a href="../../">Home</a>
+    </body>
+</html>

@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "f83cd144-925d-4af5-8318-8f771e626b7a",
+		"name": "friend`s_birthdays",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32654682"
+	},
+	"item": [
+		{
+			"name": "GET all friends",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Not found 404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"firstName\": \"Kevin\",\r\n        \"lastName\": \"Klein\",\r\n        \"birthday\": [\r\n            1990,\r\n            5,\r\n            15\r\n        ]\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/friends/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends/birthday?birthday=1990-05-15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends",
+						"birthday"
+					],
+					"query": [
+						{
+							"key": "birthday",
+							"value": "1990-05-15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by fullname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/friends?firstName=Kiwi&lastName=Green",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friends"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "Kiwi"
+						},
+						{
+							"key": "lastName",
+							"value": "Green"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
